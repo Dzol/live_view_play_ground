@@ -21,6 +21,7 @@ defmodule LiveViewPlayGroundWeb.Router do
 
     live "/clock", ClockLive
     live "/life", LifeLive
+    live "/count", CountLive
   end
 
   # Other scopes may use custom stacks.

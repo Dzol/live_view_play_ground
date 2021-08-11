@@ -11,4 +11,4 @@ Follow the links under the _Stuff_ section.
 
 Mix created tonnes of files.
 Some of which probably aren't needed.
-Just check out `clock_live.ex` and `life_live.ex`.
+Just check out [the code using LiveView](lib/live_view_play_ground_web/live/*_live.ex).
