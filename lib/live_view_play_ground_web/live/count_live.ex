@@ -1,5 +1,5 @@
 defmodule LiveViewPlayGroundWeb.CountLive do
-  ## Inspired by https://observablehq.com/@visnup/game-of-life
+  ## See https://eugenkiss.github.io/7guis/tasks#counter
   use Phoenix.LiveView
 
   def render(assigns) do
@@ -17,6 +17,6 @@ defmodule LiveViewPlayGroundWeb.CountLive do
   end
 
   def handle_event("increment", _, socket) do
-    {:noreply, update(socket, :count, & &1 + 1)}
+    {:noreply, update(socket, :count, &(&1 + 1))}
   end
 end

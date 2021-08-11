@@ -4,7 +4,7 @@ defmodule LiveViewPlayGroundWeb.LifeLive do
 
   defmodule Life do
     defmodule World,
-      do: @type t() :: [{integer(), integer()}]
+      do: @type(t() :: [{integer(), integer()}])
 
     @spec tick(World.t()) :: World.t()
     def tick(world) do
@@ -20,13 +20,12 @@ defmodule LiveViewPlayGroundWeb.LifeLive do
 
     defp alive?(world) do
       fn {cell, count} = _association ->
-	(count === 3) || (count === 2 && cell in world)
+        count === 3 || (count === 2 && cell in world)
       end
     end
 
     defp neighbouring({x, y}) do
-      for dx <- [-1,0,1], dy <- [-1,0,1], not (dx === 0 and dy === 0),
-	do: {x+dx, y+dy}
+      for dx <- [-1, 0, 1], dy <- [-1, 0, 1], not (dx === 0 and dy === 0), do: {x + dx, y + dy}
     end
 
     defp key({k, _v} = _association), do: k
@@ -46,7 +45,7 @@ defmodule LiveViewPlayGroundWeb.LifeLive do
 
   def mount(_params, _session, socket) do
     if connected?(socket), do: :timer.send_interval(1000, self(), :tick)
-    
+
     {:ok, put_world(socket)}
   end
 
@@ -55,7 +54,7 @@ defmodule LiveViewPlayGroundWeb.LifeLive do
   end
 
   defp put_world(socket) do
-    assign(socket, world: [{0,0}, {0,1}, {0,-1}, {-1,0}, {1,1}])
+    assign(socket, world: [{0, 0}, {0, 1}, {0, -1}, {-1, 0}, {1, 1}])
   end
 
   defp put_tick(socket) do

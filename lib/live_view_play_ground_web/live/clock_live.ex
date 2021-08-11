@@ -2,7 +2,7 @@ defmodule LiveViewPlayGroundWeb.ClockLive do
   ## The Elm Clock (https://elm-lang.org/examples/clock) in LiveView
   use Phoenix.LiveView
 
-  defmodule Point, do: defstruct [:x, :y]
+  defmodule Point, do: defstruct([:x, :y])
 
   defmodule HandComponent do
     use Phoenix.LiveComponent
@@ -20,7 +20,7 @@ defmodule LiveViewPlayGroundWeb.ClockLive do
     end
 
     def paint(length, width, turns) do
-      t = 2 * :math.pi * (turns - 0.25)
+      t = 2 * :math.pi() * (turns - 0.25)
       x = 200 + length * :math.cos(t)
       y = 200 + length * :math.sin(t)
       %{tip: %Point{x: x, y: y}, length: length, width: width}
