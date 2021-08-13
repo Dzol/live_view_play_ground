@@ -17,20 +17,30 @@ defmodule LiveViewPlayGroundWeb.TemperatureConverterLive do
   end
 
   def handle_event("celcius-change", %{"value" => c}, socket) do
-    {c, _} = Float.parse(c)
-    {:noreply, assign(socket, %{farenheit: farenheit(c), celcius: c})}
+    socket = case Float.parse(c) do
+      {c, ""} ->
+        assign(socket, %{farenheit: farenheit(c), celcius: Kernel.round(c)})
+      _ ->
+        socket
+    end
+    {:noreply, socket}
   end
 
   def handle_event("farenheit-change", %{"value" => f}, socket) do
-    {f, _} = Float.parse(f)
-    {:noreply, assign(socket, %{celcius: celcius(f), farenheit: f})}
+    socket = case Float.parse(f) do
+      {f, ""} ->
+        assign(socket, %{farenheit: Kernel.round(f), celcius: celcius(f)})
+      _ ->
+        socket
+    end
+    {:noreply, socket}
   end
 
   defp celcius(f) do
-    (f - 32) * (5 / 9)
+    Kernel.round((f - 32) * (5 / 9))
   end
 
   defp farenheit(c) do
-    c * (9 / 5) + 32
+    Kernel.round(c * (9 / 5) + 32)
   end
 end
