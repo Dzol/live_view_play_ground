@@ -4,11 +4,9 @@ defmodule LiveViewPlayGroundWeb.CountLive do
 
   def render(assigns) do
     ~L"""
-    <h1>Counter</h1>
-    <div>
-      <input type="number" value="<%= @count %>" readonly style="width: 8em">
-      <input type="button" value="count" phx-click="increment">
-    </div>
+    <h1>Count</h1>
+    <input type="number" value="<%= @count %>" readonly style="width: 8em">
+    <button phx-click="increment">Click Me</button>
     """
   end
 

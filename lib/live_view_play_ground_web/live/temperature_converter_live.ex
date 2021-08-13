@@ -5,13 +5,10 @@ defmodule LiveViewPlayGroundWeb.TemperatureConverterLive do
   def render(assigns) do
     ~L"""
     <h1>Temperature Converter</h1>
-    <p><%= @celcius %>℃/<%= @farenheit %>℉</p>
-    <div">
-      <input phx-keyup="celcius-change" type="text"" value="<%= @celcius %>" style="width: 8em">
-      &nbspCelcius =&nbsp
-      <input phx-keyup="farenheit-change" type="text"" value="<%= @farenheit %>" style="width: 8em">
-      &nbspFarenheit
-    </div>
+    <input phx-keyup="celcius-change" type="text" value="<%= @celcius %>" style="width: 8em">
+    &nbsp℃ =&nbsp
+    <input phx-keyup="farenheit-change" type="text" value="<%= @farenheit %>" style="width: 8em">
+    &nbsp℉
     """
   end
 
