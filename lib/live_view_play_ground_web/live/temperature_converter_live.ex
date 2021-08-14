@@ -19,10 +19,8 @@ defmodule LiveViewPlayGroundWeb.TemperatureConverterLive do
   def handle_event(name, %{"value" => x}, socket) when name in ["celsius-change", "farenheit-change"] do
     socket = case Float.parse(x) do
       {x, ""} ->
-        {f, c} = case name do
-          "celsius-change" -> {farenheit(x), x}
-          "farenheit-change" -> {x, celsius(x)}
-        end
+        f = if name === "celsius-change", do: farenheit(x), else: x
+        c = if name === "farenheit-change", do: celsius(x), else: x
         f = Kernel.round(f)
         c = Kernel.round(c)
         assign(socket, %{farenheit: f, celsius: c})
