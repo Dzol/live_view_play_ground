@@ -20,9 +20,11 @@ defmodule LiveViewPlayGroundWeb.TemperatureConverterLive do
     socket = case Float.parse(x) do
       {x, ""} ->
         {f, c} = case name do
-          "celsius-change" -> {farenheit(x), Kernel.round(x)}
-          "farenheit-change" -> {Kernel.round(x), celsius(x)}
+          "celsius-change" -> {farenheit(x), x}
+          "farenheit-change" -> {x, celsius(x)}
         end
+        f = Kernel.round(f)
+        c = Kernel.round(c)
         assign(socket, %{farenheit: f, celsius: c})
       _ ->
         socket
@@ -31,10 +33,10 @@ defmodule LiveViewPlayGroundWeb.TemperatureConverterLive do
   end
 
   defp celsius(f) do
-    Kernel.round((f - 32) * (5 / 9))
+    (f - 32) * (5 / 9)
   end
 
   defp farenheit(c) do
-    Kernel.round(c * (9 / 5) + 32)
+    c * (9 / 5) + 32
   end
 end
