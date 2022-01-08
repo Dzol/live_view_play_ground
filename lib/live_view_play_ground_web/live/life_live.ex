@@ -33,7 +33,7 @@ defmodule LiveViewPlayGroundWeb.LifeLive do
 
   def render(assigns) do
     ~L"""
-    <svg viewBox="-32 -16 64 32">
+    <svg viewBox="-256 -128 512 256">
       <g>
       <%= for {x, y} <- @world do %>
         <rect x="<%= x %>" y="<%= y %>" width="0.8" height="0.8" />
@@ -44,7 +44,7 @@ defmodule LiveViewPlayGroundWeb.LifeLive do
   end
 
   def mount(_params, _session, socket) do
-    if connected?(socket), do: :timer.send_interval(1000, self(), :tick)
+    if connected?(socket), do: :timer.send_interval(125, self(), :tick)
 
     {:ok, put_world(socket)}
   end
